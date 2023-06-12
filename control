@@ -1,0 +1,9 @@
+Package: alias20.coolcc
+Name: CoolCC Reborn
+Version: 2.0
+Architecture: iphoneos-arm
+Description: This tweak makes ControlCenter cool! Compatible with iOS 15/rootless.
+Maintainer: alias20
+Author: alias20
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000), preferenceloader 
