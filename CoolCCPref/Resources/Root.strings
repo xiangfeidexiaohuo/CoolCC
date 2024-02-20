@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Apply</key>
+	<string>应用</string>
+	<key>Black</key>
+	<string>黑色</string>
+	<key>Blue</key>
+	<string>蓝色</string>
+	<key>Border Color</key>
+	<string>设定边框颜色</string>
+	<key>Border Line Width</key>
+	<string>边线宽度</string>
+	<key>Border color</key>
+	<string>边框颜色</string>
+	<key>Brown</key>
+	<string>棕色</string>
+	<key>Clear</key>
+	<string>明亮</string>
+	<key>Cyan</key>
+	<string>青色</string>
+	<key>Dark Background</key>
+	<string>启用深色背景</string>
+	<key>DarkGray</key>
+	<string>深灰</string>
+	<key>Effects Volume HUD</key>
+	<string>作用于音量框</string>
+	<key>Enabled</key>
+	<string>启用插件功能</string>
+	<key>Gray</key>
+	<string>灰色</string>
+	<key>Green</key>
+	<string>绿色</string>
+	<key>LightGray</key>
+	<string>浅灰</string>
+	<key>Magenta</key>
+	<string>品红</string>
+	<key>None</key>
+	<string>无</string>
+	<key>Only iOS13</key>
+	<string>仅仅支持iOS13+</string>
+	<key>Only iOS13+</key>
+	<string>仅支持iOS13+</string>
+	<key>Orange</key>
+	<string>橙色</string>
+	<key>Please donate</key>
+	<string>捐赠作者</string>
+	<key>Purple</key>
+	<string>紫色</string>
+	<key>Red</key>
+	<string>红色</string>
+	<key>Remove Highlight</key>
+	<string>移除高亮显示</string>
+	<key>Respring</key>
+	<string>注销设备生效</string>
+	<key>Thick</key>
+	<string>粗</string>
+	<key>Thin</key>
+	<string>细</string>
+	<key>Twitter @4nni3_</key>
+	<string>作者推特 &lt;🇨🇳简体中文:Hi客源&gt;</string>
+	<key>White</key>
+	<string>白色</string>
+	<key>Yellow</key>
+	<string>黄色</string>
+	<key>border setting</key>
+	<string>模块边框设置</string>
+</dict>
+</plist>

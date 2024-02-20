@@ -45,9 +45,9 @@ static NSString *prefsFileName = @"alias20.coolcc";
 }
 
 - (void)respring {
-	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Do you really want to respring now?" preferredStyle:UIAlertControllerStyleAlert];
-	UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
-    UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"Respring" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确认" message:@"现在想注销设备吗？\n\n🇨🇳刀刀" preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
+    UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"注销" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
         [self doRespring];
     }];
     

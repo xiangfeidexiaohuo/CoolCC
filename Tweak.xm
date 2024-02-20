@@ -55,6 +55,13 @@ typedef void (^CDUnknownBlockType)(void);
 }
 @end
 
+
+//16系统音量
+@interface MRUContinuousSliderView : CCUIContinuousSliderView {
+	MTMaterialView* _materialView;
+}
+@end
+
 @interface CCUIContentModuleContentContainerView : UIView {
 	MTMaterialView* _moduleMaterialView;
 }
@@ -90,6 +97,7 @@ static float Width = 0.0;
 %new
 - (void)CoolCC {
 	CALayer *ourLayer = [self layer];
+    // NSLog(@"CoolCC, ourLayer, %@", ourLayer);
 	NSString *ourClassName = NSStringFromClass([ourLayer class]);
 
 	if([ourClassName isEqual:@"MTMaterialLayer"]) {
@@ -165,6 +173,20 @@ static float Width = 0.0;
 %end
 
 %hook MediaControlsVolumeSliderView
+-(void)layoutSubviews {
+	%orig;
+	if(OnHUD || [NSStringFromClass([self class]) isEqual:@"SBElasticSliderView"]) {
+		MTMaterialView *mView = MSHookIvar<MTMaterialView *>(self, "_materialView");
+		if(mView)
+			[mView CoolCC];
+	}
+}
+%end
+
+
+
+//16音量
+%hook MRUContinuousSliderView
 -(void)layoutSubviews {
 	%orig;
 	if(OnHUD || [NSStringFromClass([self class]) isEqual:@"SBElasticSliderView"]) {
@@ -292,17 +314,16 @@ static float Width = 0.0;
 
 %group CoolCCHookDB
 %hook CCUIModularControlCenterOverlayViewController
+
 -(void)presentAnimated:(BOOL)arg1 withCompletionHandler:(CDUnknownBlockType)arg2 {
 	%orig(arg1, arg2);
 	if([self respondsToSelector:@selector(overlayBackgroundView)]) {
 		MTMaterialView *mView = [self overlayBackgroundView];
 		if(mView) {
 			UIColor *ourColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
-			[mView setBackgroundColor:ourColor];
-			[UIView animateWithDuration:0.0 delay:0.4 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-				UIColor *ourColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
+			[UIView animateWithDuration:0.3 animations:^{
 				[mView setBackgroundColor:ourColor];
-    		} completion:nil];
+    		}];
 		}
 	}
 }
@@ -312,14 +333,14 @@ static float Width = 0.0;
 	if([self respondsToSelector:@selector(overlayBackgroundView)]) {
 		MTMaterialView *mView = [self overlayBackgroundView];
 		if(mView) {
-			[UIView animateWithDuration:0.0 delay:0.4 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-				UIColor *ourColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
-				[mView setBackgroundColor:ourColor];
-    		} completion:nil];
+			[UIView animateWithDuration:0.3 animations:^{
+				[mView setBackgroundColor:[UIColor clearColor]];
+    		}];
 		}
 	}
 }
 %end
+
 %end
 
 %ctor {
@@ -330,11 +351,10 @@ static float Width = 0.0;
 		dlopen("/System/Library/ControlCenter/Bundles/FocusUIModule.bundle/FocusUIModule", RTLD_GLOBAL);
 
 		NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/jb/var/mobile/Library/Preferences/alias20.coolcc.plist"];
+        // NSLog(@"CoolCC, %@", settings);
 
 
-		BOOL kEnabled = [[settings objectForKey:@"enabled"] boolValue];
-		if(!settings)
-			kEnabled = true;
+        BOOL kEnabled = [([settings valueForKey:@"enabled"] ?: @(YES)) boolValue];
 
 		BOOL kRemovehighlight = [[settings objectForKey:@"removehighlight"] boolValue];
 		BOOL kDarkbg = [[settings objectForKey:@"darkbg"] boolValue];
@@ -345,11 +365,10 @@ static float Width = 0.0;
 		if(!kBorderColor)
 			kBorderColor = [UIColor whiteColor];
 		BorderColor = kBorderColor;
-		BOOL kOnhUD = [[settings objectForKey:@"onhud"] boolValue];
-		if(!settings)
-			kOnhUD = true;
+        BOOL kOnhUD = [([settings valueForKey:@"onhud"] ?: @(YES)) boolValue];
 		OnHUD = kOnhUD;
 
+        // NSLog(@"CoolCC, kBorderColor, %@", kBorderColor);
 		if(kEnabled) {
 
 			%init(CoolCCHook);
